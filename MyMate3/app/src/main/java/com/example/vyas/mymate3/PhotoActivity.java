@@ -28,56 +28,56 @@ public class PhotoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_photo);
         //hardCodeInfo();
 
-
-        GraphRequest request = GraphRequest.newMeRequest(
-                AccessToken.getCurrentAccessToken(),
-                new GraphRequest.GraphJSONObjectCallback() {
-                    @Override
-                    public void onCompleted(
-                            JSONObject object,
-                            GraphResponse response) {
-                        try {
-                            //This contains all the photos with array data>>link
-                            //JSONObject photosobject = object.getJSONObject("photos");
-                            String id = object.optString("id");
-                            Log.d("Id", id);
-
-
-                            ProfilePictureView pictureView = (ProfilePictureView) findViewById(R.id.profilePicture);
-                            pictureView.setProfileId(id);
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-        Bundle parameters = new Bundle();
-        parameters.putString("fields", "id,name,picture,photos{link}");
-        request.setParameters(parameters);
-        request.executeAsync();
-
-
-
-
-        Button finishSetup = (Button) findViewById(R.id.finishSetupButton);
-        finishSetup.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Log.d("MyApp", "I am exiting photo activity");
-                Intent intent =  new Intent();
-                Bundle bp = new Bundle();
-                //bp.putString("education", changeableAttributes.getEducation());
-                intent.putExtras(bp);
-                setResult(RESULT_OK, intent);
-                finish();
-            }
-        });
-
+//        GraphRequest request = GraphRequest.newMeRequest(
+//                AccessToken.getCurrentAccessToken(),
+//                new GraphRequest.GraphJSONObjectCallback() {
+//                    @Override
+//                    public void onCompleted(JSONObject object, GraphResponse response) {
+//                        // Insert your code here
+//                        JSONObject jsonObject = object.optJSONObject("albums");
+//
+//                            JSONArray jsonArray = jsonObject.optJSONArray("data");
+//                    }
+//                });
+//
+//        Bundle parameters = new Bundle();
+//        parameters.putString("fields", "albums");
+//        request.setParameters(parameters);
+//        request.executeAsync();
+//        GraphRequest request = GraphRequest.newMeRequest(
+//                AccessToken.getCurrentAccessToken(),
+//                new GraphRequest.GraphJSONObjectCallback() {
+//                    @Override
+//                    public void onCompleted(
+//                            JSONObject object,
+//                            GraphResponse response) {
+//                        //try {
+//                            //This contains all the photos with array data>>link
+//                            //JSONObject photosobject = object.getJSONObject("photos");
+//                            //String id = object.optString("id");
+//                            //Log.d("Id", id);
+//                            JSONObject jsonObject = object.optJSONObject("albums");
+//
+//                            JSONArray jsonArray = jsonObject.optJSONArray("data");
+////                            int length = jsonArray.length();
+//                        //JSONObject jsonObject1 = jsonObject.optJSONObject("data");
+//                        //int length = jsonObject1.length();
+//                          //  Log.d("Number of albums", String.valueOf(length));
+////                            for (int i = 0; i < jsonArray.length(); i++) {
+////                                JSONObject obj1 = jsonArray.optJSONObject(i);
+////                                JSONArray albumid = obj1.optString("id");
+////                                Log.d("Album Id", albumid);
+////                            }
+//                        //}
+//                    }});
+//        Bundle parameters = new Bundle();
+//        parameters.putString("fields", "id,name,link,album-id");
+//        request.setParameters(parameters);
+//        request.executeAsync();
+//    }
 
 
     }
-
-
-
 
     void hardCodeInfo(){
         //changeableAttributes = new ChangeableAttributes();

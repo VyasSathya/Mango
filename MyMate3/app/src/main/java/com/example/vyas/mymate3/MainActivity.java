@@ -27,6 +27,7 @@ import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.Arrays;
@@ -55,11 +56,37 @@ public class MainActivity extends Activity {
         info = (TextView)findViewById(R.id.info);
         loginButton = (LoginButton)findViewById(R.id.login_button);
 
+        loginButton.setReadPermissions(Arrays.asList("user_photos"));
+
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                LoginManager.getInstance().logInWithReadPermissions(MainActivity.this, Arrays.asList("user_friends","user_location",
-                        "user_birthday", "user_likes","user_photos"));
+                LoginManager.getInstance().logInWithReadPermissions(
+                        MainActivity.this,
+                        Arrays.asList("user_photos"));
+//                LoginManager.getInstance().logInWithReadPermissions(MainActivity.this, Arrays.asList("user_friends","user_location",
+//                        "user_birthday", "user_likes","user_photos"));
+                GraphRequest request = GraphRequest.newMeRequest(
+                        AccessToken.getCurrentAccessToken(),
+                        new GraphRequest.GraphJSONObjectCallback() {
+                            @Override
+                            public void onCompleted(JSONObject object, GraphResponse response) {
+                                JSONObject jsonObject = object.optJSONObject("albums");
+                                JSONArray jsonArray = jsonObject.optJSONArray("data");
+                                int b = jsonArray.length();
+                                Log.d("Album Length",String.valueOf(b));
+                                for(int i=0; i<jsonArray.length();i++){
+                                    JSONObject eachAlbum = jsonArray.optJSONObject(i);
+                                    String albumName = eachAlbum.optString("name");
+                                    Log.d("Album Id", albumName);
+                                }
+                            }
+                        });
+
+                Bundle parameters = new Bundle();
+                parameters.putString("fields", "albums");
+                request.setParameters(parameters);
+                request.executeAsync();
                 Toast.makeText(getApplicationContext(), "Login Success!", Toast.LENGTH_SHORT).show();
                 goToElements();
             }
