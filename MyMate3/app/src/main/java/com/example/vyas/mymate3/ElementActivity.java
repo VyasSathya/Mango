@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.esri.android.map.MapView;
 import com.facebook.AccessToken;
 import com.facebook.FacebookSdk;
 
@@ -15,6 +17,8 @@ public class ElementActivity extends AppCompatActivity {
     TextView info;
     ChangeableAttributes changeableAttributes;
 
+    MapView mMapView = (MapView) findViewById(R.id.map);
+    //mMapView.enableWrapAround(true);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +35,16 @@ public class ElementActivity extends AppCompatActivity {
         else{
             //TODO
         }
+    }
+
+    protected void onPause() {
+        super.onPause();
+        mMapView.pause();
+    }
+
+    protected void onResume() {
+        super.onResume();
+        mMapView.unpause();
     }
 
     //This Function Checks for a First Time Setup and if so starts the profile setup process

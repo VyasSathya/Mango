@@ -16,13 +16,13 @@
         android:textSize="18sp"
         android:layout_alignParentTop="true" />
 
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New RadioButton"
-        android:id="@+id/radioButton"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+    <com.esri.android.map.MapView
+        android:id="@+id/map"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        mapoptions.MapType="Topo"
+        mapoptions.ZoomLevel="13"
+        mapoptions.center="33.666354, -117.903557" />
 
 
 </RelativeLayout>

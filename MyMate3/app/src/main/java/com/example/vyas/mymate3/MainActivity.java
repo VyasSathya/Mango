@@ -64,8 +64,6 @@ public class MainActivity extends Activity {
                 LoginManager.getInstance().logInWithReadPermissions(
                         MainActivity.this,
                         Arrays.asList("user_photos"));
-//                LoginManager.getInstance().logInWithReadPermissions(MainActivity.this, Arrays.asList("user_friends","user_location",
-//                        "user_birthday", "user_likes","user_photos"));
                 GraphRequest request = GraphRequest.newMeRequest(
                         AccessToken.getCurrentAccessToken(),
                         new GraphRequest.GraphJSONObjectCallback() {
