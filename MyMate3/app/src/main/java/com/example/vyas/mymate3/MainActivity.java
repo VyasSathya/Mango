@@ -31,12 +31,14 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class MainActivity extends Activity {
 
     private TextView info;
     private LoginButton loginButton;
     private CallbackManager callbackManager;
+    List<String> permissionNeeds= Arrays.asList("user_photos", "email", "user_birthday", "user_friends");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,36 +57,15 @@ public class MainActivity extends Activity {
 
         info = (TextView)findViewById(R.id.info);
         loginButton = (LoginButton)findViewById(R.id.login_button);
-
-        loginButton.setReadPermissions(Arrays.asList("user_photos"));
+        loginButton.setReadPermissions(permissionNeeds);
 
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 LoginManager.getInstance().logInWithReadPermissions(
                         MainActivity.this,
-                        Arrays.asList("user_photos"));
-                GraphRequest request = GraphRequest.newMeRequest(
-                        AccessToken.getCurrentAccessToken(),
-                        new GraphRequest.GraphJSONObjectCallback() {
-                            @Override
-                            public void onCompleted(JSONObject object, GraphResponse response) {
-                                JSONObject jsonObject = object.optJSONObject("albums");
-                                JSONArray jsonArray = jsonObject.optJSONArray("data");
-                                int b = jsonArray.length();
-                                Log.d("Album Length",String.valueOf(b));
-                                for(int i=0; i<jsonArray.length();i++){
-                                    JSONObject eachAlbum = jsonArray.optJSONObject(i);
-                                    String albumName = eachAlbum.optString("name");
-                                    Log.d("Album Id", albumName);
-                                }
-                            }
-                        });
+                        permissionNeeds);
 
-                Bundle parameters = new Bundle();
-                parameters.putString("fields", "albums");
-                request.setParameters(parameters);
-                request.executeAsync();
                 Toast.makeText(getApplicationContext(), "Login Success!", Toast.LENGTH_SHORT).show();
                 goToElements();
             }
@@ -132,6 +113,7 @@ public class MainActivity extends Activity {
     public boolean isLoggedIn() {
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         return accessToken != null;
+
     }
 
 

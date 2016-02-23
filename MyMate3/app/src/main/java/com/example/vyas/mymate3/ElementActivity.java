@@ -17,7 +17,7 @@ public class ElementActivity extends AppCompatActivity {
     TextView info;
     ChangeableAttributes changeableAttributes;
 
-    MapView mMapView = (MapView) findViewById(R.id.map);
+    MapView mMapView = null;
     //mMapView.enableWrapAround(true);
 
     @Override
@@ -29,6 +29,7 @@ public class ElementActivity extends AppCompatActivity {
         firstTimeSetup();
         setContentView(R.layout.activity_element);
         info = (TextView)findViewById(R.id.info);
+        mMapView = (MapView) findViewById(R.id.map);
         if(accessToken!=null){
             info.setText(accessToken.getUserId());
         }
