@@ -4,4 +4,15 @@
     <string name="facebook_app_id">981527675273371</string>
     <string name="title_activity_element">ElementActivity</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="google_app_id">mango-1230</string>
+    <string name="google_api_key">AIzaSyDevjTQD9MD_dMlULpa1LSrh1IjHihVuwU</string>
+    <string name="title_activity_maps">Map</string>
+    <string-array name="education">
+        <item>High School</item>
+        <item>Bachelors</item>
+        <item>Masters</item>
+        <item>Phd</item>
+        <item>Other</item>
+        <item>Rather Not Say</item>
+    </string-array>
 </resources>

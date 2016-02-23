@@ -26,6 +26,8 @@ import com.facebook.GraphResponse;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -35,15 +37,19 @@ import java.util.List;
 
 public class MainActivity extends Activity {
 
-    private TextView info;
-    private LoginButton loginButton;
+
     private CallbackManager callbackManager;
     List<String> permissionNeeds= Arrays.asList("user_photos", "email", "user_birthday", "user_friends");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        LoginButton loginButton;
+
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(getApplicationContext());
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();
+        ImageLoader.getInstance().init(config);
         if (isLoggedIn()){
             Toast.makeText(getApplicationContext(), "Already Logged in!", Toast.LENGTH_SHORT).show();
             goToElements();
@@ -55,7 +61,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
 
-        info = (TextView)findViewById(R.id.info);
+        TextView info = (TextView)findViewById(R.id.info);
         loginButton = (LoginButton)findViewById(R.id.login_button);
         loginButton.setReadPermissions(permissionNeeds);
 
