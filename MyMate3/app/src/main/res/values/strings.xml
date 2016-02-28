@@ -7,12 +7,8 @@
     <string name="google_app_id">mango-1230</string>
     <string name="google_api_key">AIzaSyDevjTQD9MD_dMlULpa1LSrh1IjHihVuwU</string>
     <string name="title_activity_maps">Map</string>
-    <string-array name="education">
-        <item>High School</item>
-        <item>Bachelors</item>
-        <item>Masters</item>
-        <item>Phd</item>
-        <item>Other</item>
-        <item>Rather Not Say</item>
-    </string-array>
+    <string name="title_activity_tabbed_question">Profile Setup</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

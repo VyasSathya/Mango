@@ -26,8 +26,6 @@ public class ElementActivity extends AppCompatActivity {
     ChangeableAttributes changeableAttributes;
     private GoogleMap mMap = null;
 
-    //MapView mMapView = null;
-    //mMapView.enableWrapAround(true);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,13 +45,9 @@ public class ElementActivity extends AppCompatActivity {
         }
 
         LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-
         Criteria criteria = new Criteria();
-
         String provider = locationManager.getBestProvider(criteria, true);
-
         Location location = locationManager.getLastKnownLocation(provider);
-
         Log.d("Location ",location.toString());
 
 
@@ -80,8 +74,10 @@ public class ElementActivity extends AppCompatActivity {
             editor.putBoolean("firststart", true);
             editor.apply();
 
-            goToPhotos();
-            goToQuestionnaire();
+            goToTabbed();
+
+            //goToPhotos();
+            //goToQuestionnaire();
         }
 
 
@@ -90,11 +86,23 @@ public class ElementActivity extends AppCompatActivity {
         String firstName = userDetails.getString("first_name", "");
         String gender = userDetails.getString("gender", "");
         String age = userDetails.getString("age", "");
+        String education = userDetails.getString("education", "");
+        String occupation = userDetails.getString("occupation", "");
+        String religion = userDetails.getString("religion", "");
+        String community = userDetails.getString("community", "");
+        String height = userDetails.getString("height", "");
 
 
         Log.d("Reading Age", age);
         Log.d("Reading Gender", gender);
         Log.d("Reading First Name", firstName);
+        Log.d("Reading Education", education);
+        Log.d("Reading Occupation", occupation);
+        Log.d("Reading Religion", religion);
+        Log.d("Reading Community", community);
+        Log.d("Reading Height Feet", height);
+
+
 
     }
 
@@ -103,12 +111,7 @@ public class ElementActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == RESULT_OK && requestCode == 0)
         {
-            Bundle b = data.getExtras();
-            changeableAttributes.setHeight(b.getInt("heightfeet"),b.getInt("heightinches"));
-            changeableAttributes.setEducation("education");
-            changeableAttributes.setOccupation("occupation");
-            changeableAttributes.setReligion("religion");
-            changeableAttributes.setCommunity("community");
+
         }
         else if(resultCode == RESULT_OK && requestCode == 1)
         {
@@ -125,6 +128,12 @@ public class ElementActivity extends AppCompatActivity {
 
     private void goToPhotos(){
         Intent intent = new Intent(this, PhotoActivity.class);
+        startActivityForResult(intent,1);
+    }
+
+
+    private void goToTabbed(){
+        Intent intent = new Intent(this, TabbedQuestionActivity.class);
         startActivityForResult(intent,1);
     }
 

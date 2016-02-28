@@ -102,9 +102,6 @@ public class MainActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         callbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
-        //boolean handled = callbackManager.onActivityResult(requestCode, resultCode, data);
-        //if (handled) { Toast.makeText(getApplicationContext(), "Callback Handled", Toast.LENGTH_SHORT).show(); }
-        //else { Toast.makeText(getApplicationContext(), "Failed to Handle Callback", Toast.LENGTH_SHORT).show(); }
     }
 
     @Override

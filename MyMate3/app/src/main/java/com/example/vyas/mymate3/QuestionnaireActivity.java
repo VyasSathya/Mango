@@ -29,7 +29,6 @@ import java.util.GregorianCalendar;
 
 public class QuestionnaireActivity extends AppCompatActivity {
 
-    ChangeableAttributes changeableAttributes;
     ListView listView;
     ArrayAdapter<String> arrayAdapter;
     String[] educationList = {
@@ -45,7 +44,7 @@ public class QuestionnaireActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questionnaire);
-        listView = (ListView)findViewById(R.id.options_list_view);
+        listView = (ListView)findViewById(R.id.options_list_view2);
         arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,educationList);
         listView.setAdapter(arrayAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
@@ -114,14 +113,6 @@ public class QuestionnaireActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d("MyApp", "I am exiting Question Activity");
                 Intent intent = new Intent();
-                Bundle bp = new Bundle();
-                bp.putString("education", changeableAttributes.getEducation());
-                bp.putString("occupation", changeableAttributes.getOccupation());
-                bp.putString("religion", changeableAttributes.getReligion());
-                bp.putString("community", changeableAttributes.getCommunity());
-                bp.putInt("heightfeet", changeableAttributes.getHeightFeet());
-                bp.putInt("heightinches", changeableAttributes.getHeightInches());
-                intent.putExtras(bp);
                 setResult(RESULT_OK, intent);
                 finish();
             }
@@ -151,18 +142,16 @@ public class QuestionnaireActivity extends AppCompatActivity {
         }
 
 
-
-
-
-
     void hardCodeInfo(){
-        changeableAttributes = new ChangeableAttributes();
-        changeableAttributes.setHeight(5, 8);
-        changeableAttributes.setEducation("bachelors");
-        changeableAttributes.setOccupation("Animator");
-        changeableAttributes.setReligion("Hindu");
-        changeableAttributes.setCommunity("Tamil");
+
+        SharedPreferences.Editor editor = getSharedPreferences("userdetails", MODE_PRIVATE).edit();
+        editor.putString("education", "Bachelors");
+        editor.putString("occupation", "Animator");
+        editor.putString("religion", "Hindu");
+        editor.putString("community", "Tamil");
+        editor.putString("height feet", "5");
+        editor.putString("height inches", "8");
+        editor.apply();
 
     }
-
 }

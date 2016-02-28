@@ -99,7 +99,4 @@ public class PhotoActivity extends AppCompatActivity {
         request2.executeAsync();
 
     }
-
-
-
 }
