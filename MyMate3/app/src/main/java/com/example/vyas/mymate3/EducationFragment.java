@@ -110,6 +110,8 @@ public class EducationFragment extends Fragment {
                                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                                 String myEducation = educationList[position];
                                                 SharedPreferences.Editor editor = getContext().getSharedPreferences("userdetails", Context.MODE_PRIVATE).edit();
+                                                editor.remove("education");
+                                                editor.apply();
                                                 editor.putString("education", myEducation);
                                                 editor.apply();
                                                 Toast.makeText(getContext(), myEducation + " is selected", Toast.LENGTH_LONG).show();

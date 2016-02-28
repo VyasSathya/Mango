@@ -52,6 +52,8 @@ public class CommunityFragment extends Fragment {
                                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                                 String myCommunity = communityList[position];
                                                 SharedPreferences.Editor editor = getContext().getSharedPreferences("userdetails", Context.MODE_PRIVATE).edit();
+                                                editor.remove("community");
+                                                editor.apply();
                                                 editor.putString("community", myCommunity);
                                                 editor.apply();
                                                 Toast.makeText(getContext(), myCommunity + " is selected", Toast.LENGTH_LONG).show();

@@ -52,6 +52,8 @@ public class ReligionFragment extends Fragment {
                                             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                                 String myReligion = religionList[position];
                                                 SharedPreferences.Editor editor = getContext().getSharedPreferences("userdetails", Context.MODE_PRIVATE).edit();
+                                                editor.remove("religion");
+                                                editor.apply();
                                                 editor.putString("religion", myReligion);
                                                 editor.apply();
                                                 Toast.makeText(getContext(), myReligion + " is selected", Toast.LENGTH_LONG).show();

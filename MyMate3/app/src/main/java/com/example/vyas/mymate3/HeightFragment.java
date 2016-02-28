@@ -84,6 +84,8 @@ public class HeightFragment extends Fragment{
                                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                                     String myHeight = heightList[position];
                                                     SharedPreferences.Editor editor = getContext().getSharedPreferences("userdetails", Context.MODE_PRIVATE).edit();
+                                                    editor.remove("height");
+                                                    editor.apply();
                                                     editor.putString("height", myHeight);
                                                     editor.apply();
                                                     Toast.makeText(getContext(), myHeight + " is selected", Toast.LENGTH_LONG).show();

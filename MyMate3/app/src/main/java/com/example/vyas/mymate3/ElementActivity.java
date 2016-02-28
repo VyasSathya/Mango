@@ -22,8 +22,7 @@ import com.facebook.FacebookSdk;
 
 public class ElementActivity extends AppCompatActivity {
 
-    TextView info;
-    ChangeableAttributes changeableAttributes;
+
     private GoogleMap mMap = null;
 
 
@@ -67,7 +66,6 @@ public class ElementActivity extends AppCompatActivity {
     //This Function Checks for a First Time Setup and if so starts the profile setup process
     private void firstTimeSetup(){
         SharedPreferences pref = getSharedPreferences("mypref", MODE_PRIVATE);
-        changeableAttributes = new ChangeableAttributes();
         if(pref.getBoolean("firststart", true)){
             SharedPreferences.Editor editor = pref.edit();
             //TODO editor.putBoolean("firststart", false);
@@ -76,8 +74,7 @@ public class ElementActivity extends AppCompatActivity {
 
             goToTabbed();
 
-            //goToPhotos();
-            //goToQuestionnaire();
+
         }
 
 

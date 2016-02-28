@@ -4,12 +4,14 @@
     android:layout_height="match_parent">
 
 
-    <ImageButton
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:id="@+id/imageButtonPhoto"
+    <GridView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:scaleType="centerInside"/>
+        android:numColumns="5"
+        android:id="@+id/albumGridView"
+        ></GridView>
+
 </RelativeLayout>

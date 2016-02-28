@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/checkbox"
+        android:src="@drawable/ic_check_black_48dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:scaleType="centerInside"/>
+
+    <ImageButton
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:id="@+id/choosePhoto1"
+        android:scaleType="centerInside"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/choosePhoto3"
+        android:layout_below="@id/choosePhoto1"
+        android:layout_centerHorizontal="true"
+        android:scaleType="centerInside" />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/choosePhoto2"
+        android:layout_below="@id/choosePhoto1"
+        android:layout_toLeftOf="@id/choosePhoto3"
+        android:layout_toStartOf="@id/choosePhoto3"
+        android:scaleType="centerInside"/>
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/choosePhoto4"
+        android:layout_alignTop="@id/choosePhoto3"
+        android:layout_toRightOf="@id/choosePhoto3"
+        android:layout_toEndOf="@id/choosePhoto3"
+        android:scaleType="centerInside"/>
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/choosePhoto5"
+        android:layout_below="@id/choosePhoto2"
+        android:layout_alignLeft="@id/choosePhoto2"
+        android:layout_alignStart="@id/choosePhoto2"
+        android:scaleType="centerInside"/>
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/choosePhoto6"
+        android:layout_below="@+id/choosePhoto3"
+        android:layout_toRightOf="@id/choosePhoto2"
+        android:layout_toEndOf="@id/choosePhoto2"
+        android:scaleType="centerInside"/>
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/choosePhoto7"
+        android:layout_below="@id/choosePhoto4"
+        android:layout_toRightOf="@id/choosePhoto3"
+        android:layout_toEndOf="@id/choosePhoto3"
+        android:scaleType="centerInside"/>
+
+</RelativeLayout>

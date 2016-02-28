@@ -28,6 +28,8 @@ public class TabbedQuestionActivity extends AppCompatActivity {
      * may be best to switch to a
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
+    public String[] urlHolder = new String[10];
+
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
     /**
@@ -94,7 +96,6 @@ public class TabbedQuestionActivity extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
 
             switch (position){
 
@@ -109,7 +110,7 @@ public class TabbedQuestionActivity extends AppCompatActivity {
                 case 4:
                     return HeightFragment.newInstance();
                 case 5:
-                    return PhotoFragment.newInstance();
+                    return FillPhotosFragment.newInstance();
             }
 
 
@@ -143,6 +144,7 @@ public class TabbedQuestionActivity extends AppCompatActivity {
 
         }
     }
+
 
 
 }

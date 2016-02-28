@@ -99,21 +99,17 @@ public class albumFragment extends Fragment {
             URL temp = null;
             try {
                 temp = new URL(params[0]);
-                //textURL.set(urlsMade, temp);
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             }
 
             try {
                 assert temp != null;
-                //bmp.add(urlsMade, BitmapFactory.decodeStream(temp.openConnection().getInputStream()));
                 bp = BitmapFactory.decodeStream(temp.openConnection().getInputStream());
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
-            //urlsMade++;
-            //return bmp.get(urlsMade);
             return bp;
         }
 
