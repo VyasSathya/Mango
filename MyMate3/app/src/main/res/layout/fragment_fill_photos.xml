@@ -3,7 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
+    <ImageButton
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:id="@+id/checkbox"
@@ -11,7 +11,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:scaleType="centerInside"/>
+        android:scaleType="centerInside"
+        android:background="@android:color/transparent"/>
 
     <ImageButton
         android:layout_width="250dp"

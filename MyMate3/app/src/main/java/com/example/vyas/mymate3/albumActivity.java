@@ -92,6 +92,7 @@ public class albumActivity extends Activity {
 //                    extras.putString("url", urlArrayList.get(position));
                     mIntent.putExtra("url",urlArrayList.get(position));
 
+
                     setResult(Activity.RESULT_OK, mIntent);
                     finish();
                     System.exit(0);

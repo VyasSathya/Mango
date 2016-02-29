@@ -134,7 +134,6 @@ public class PhotoActivity extends Activity {
     private void fillFacebookURLS(){
         final String DATA_TAG = "data";
 
-//        Log.d("Permissions", AccessToken.getCurrentAccessToken().getPermissions().toString());
         Bundle parameters = new Bundle();
         parameters.putString("fields", "albums{name,photos{id,images}}");
 

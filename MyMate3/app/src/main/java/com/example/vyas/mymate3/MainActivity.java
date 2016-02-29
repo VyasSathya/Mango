@@ -50,9 +50,16 @@ public class MainActivity extends Activity {
         FacebookSdk.sdkInitialize(getApplicationContext());
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this).build();
         ImageLoader.getInstance().init(config);
+        final SharedPreferences pref = getSharedPreferences("mypref", MODE_PRIVATE);
         if (isLoggedIn()){
             Toast.makeText(getApplicationContext(), "Already Logged in!", Toast.LENGTH_SHORT).show();
-            goToElements();
+
+            if(pref.getBoolean("firststart", true)){
+                firstTimeSetup();
+            }
+            else{
+                goToElements();
+            }
         }
         else{
             Toast.makeText(getApplicationContext(), "Not Yet Logged in!", Toast.LENGTH_SHORT).show();
@@ -73,7 +80,12 @@ public class MainActivity extends Activity {
                         permissionNeeds);
 
                 Toast.makeText(getApplicationContext(), "Login Success!", Toast.LENGTH_SHORT).show();
-                goToElements();
+                if(pref.getBoolean("firststart", true)){
+                    firstTimeSetup();
+                }
+                else{
+                    goToElements();
+                }
             }
 
             @Override
@@ -96,6 +108,7 @@ public class MainActivity extends Activity {
     private void goToElements(){
         Intent intent = new Intent(this, ElementActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @Override
@@ -117,6 +130,24 @@ public class MainActivity extends Activity {
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         return accessToken != null;
 
+    }
+
+    private void firstTimeSetup(){
+        SharedPreferences pref = getSharedPreferences("mypref", MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        //TODO set bool to false
+        editor.putBoolean("firststart", true);
+        editor.apply();
+
+        goToTabbed();
+
+
+    }
+
+    private void goToTabbed(){
+        Intent intent = new Intent(this, TabbedQuestionActivity.class);
+        startActivity(intent);
+        finish();
     }
 
 

@@ -4,6 +4,7 @@ package com.example.vyas.mymate3;
  * Created by Vyas on 2/28/2016.
  */
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -46,6 +47,7 @@ public class FillPhotosFragment extends Fragment {
     ImageButton imageButton5 = null;
     ImageButton imageButton6 = null;
     ImageButton imageButton7 = null;
+    ImageButton checkButton = null;
 
 
     public static FillPhotosFragment newInstance() {
@@ -71,6 +73,8 @@ public class FillPhotosFragment extends Fragment {
         imageButton5 = (ImageButton) rootView.findViewById(R.id.choosePhoto5);
         imageButton6 = (ImageButton) rootView.findViewById(R.id.choosePhoto6);
         imageButton7 = (ImageButton) rootView.findViewById(R.id.choosePhoto7);
+        checkButton = (ImageButton) rootView.findViewById(R.id.checkbox);
+
         SharedPreferences userDetailsCreate = getContext().getSharedPreferences("userdetails", getContext().MODE_PRIVATE);
         final SharedPreferences.Editor editorCreate = userDetailsCreate.edit();
 
@@ -180,6 +184,18 @@ public class FillPhotosFragment extends Fragment {
             }
         });
 
+        checkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (elementsPresent())
+                {
+                    goToElements();
+                }
+                else{
+                    //TODO dialog what is missing
+                }
+            }
+        });
 
 
         for(int i=1; i<8; i++){
@@ -417,4 +433,57 @@ public class FillPhotosFragment extends Fragment {
         }
 
     }
+
+    private void goToElements(){
+        Intent intent = new Intent(getActivity(), ElementActivity.class);
+        startActivity(intent);
+        getActivity().finish();
+    }
+
+    boolean elementsPresent(){
+
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("userdetails", getContext().MODE_PRIVATE);
+        String errors = "";
+
+        if(!(sharedPreferences.contains("education"))){
+            errors = errors + " Education ";
+        }
+
+        if(!(sharedPreferences.contains("occupation"))){
+            errors = errors + " Occupation ";
+        }
+
+        if(!(sharedPreferences.contains("religion"))){
+            errors = errors + " Religion ";
+        }
+
+        if(!(sharedPreferences.contains("community"))){
+            errors = errors + " Community ";
+        }
+
+        if(!(sharedPreferences.contains("height"))){
+            errors = errors + " Height ";
+        }
+
+
+        if(imageButton1.getDrawable() == null){
+            errors = errors + " Profile Picture ";
+        }
+
+        if (!errors.isEmpty()) {
+            new AlertDialog.Builder(getContext())
+                    .setTitle("Missing Information")
+                    .setMessage("Please Fill the" + errors + "Field(s)")
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // continue with delete
+                        }
+                    })
+                    .show();
+            return false;
+        }
+
+        return true;
+    }
+
 }

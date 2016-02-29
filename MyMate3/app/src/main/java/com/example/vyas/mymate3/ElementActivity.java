@@ -32,7 +32,7 @@ public class ElementActivity extends AppCompatActivity {
         //FacebookSdk.sdkInitialize(getApplicationContext());
         //AccessToken accessToken = AccessToken.getCurrentAccessToken();
 
-        firstTimeSetup();
+        //firstTimeSetup();
 
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -64,44 +64,7 @@ public class ElementActivity extends AppCompatActivity {
     }
 
     //This Function Checks for a First Time Setup and if so starts the profile setup process
-    private void firstTimeSetup(){
-        SharedPreferences pref = getSharedPreferences("mypref", MODE_PRIVATE);
-        if(pref.getBoolean("firststart", true)){
-            SharedPreferences.Editor editor = pref.edit();
-            //TODO editor.putBoolean("firststart", false);
-            editor.putBoolean("firststart", true);
-            editor.apply();
 
-            goToTabbed();
-
-
-        }
-
-
-        Log.d("Reading Saved Data", "Saved data:");
-        SharedPreferences userDetails = ElementActivity.this.getSharedPreferences("userdetails", MODE_PRIVATE);
-        String firstName = userDetails.getString("first_name", "");
-        String gender = userDetails.getString("gender", "");
-        String age = userDetails.getString("age", "");
-        String education = userDetails.getString("education", "");
-        String occupation = userDetails.getString("occupation", "");
-        String religion = userDetails.getString("religion", "");
-        String community = userDetails.getString("community", "");
-        String height = userDetails.getString("height", "");
-
-
-        Log.d("Reading Age", age);
-        Log.d("Reading Gender", gender);
-        Log.d("Reading First Name", firstName);
-        Log.d("Reading Education", education);
-        Log.d("Reading Occupation", occupation);
-        Log.d("Reading Religion", religion);
-        Log.d("Reading Community", community);
-        Log.d("Reading Height Feet", height);
-
-
-
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
